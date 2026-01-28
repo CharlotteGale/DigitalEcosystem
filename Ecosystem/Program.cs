@@ -20,8 +20,8 @@ class Program
         World.Add(william);
         World.Add(wayne);
 
-        // RunSimulation();
-        DisplayWorld();
+        RunSimulation();
+        
 
     }
 
@@ -68,6 +68,7 @@ class Program
 
                 left.InteractWith(right);
             }
+            DisplayWorld();
             Thread.Sleep(1000);
         }
     }
