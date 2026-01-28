@@ -1,0 +1,4 @@
+interface ISpeak
+{
+    string Speak();
+}
