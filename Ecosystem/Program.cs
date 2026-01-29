@@ -1,4 +1,4 @@
-﻿namespace CSharp.DigitalEcosystem;
+﻿namespace Ecosystem;
 
 class Program
 {
@@ -42,14 +42,8 @@ class Program
     }
 
 
-    static void Introduction()
-    {
-        Console.WriteLine("This is an introductory paragraph about my Ecosystem!");
-    }
-
     static void RunSimulation()
     {
-        // Introduction();
         
         while (true)
         {
@@ -68,7 +62,13 @@ class Program
 
                 left.InteractWith(right);
             }
-            DisplayWorld();
+
+            // DisplayWorld();
+
+            // Thread.Sleep(1000);
+
+            Display.AsHeirarcy(World);
+            
             Thread.Sleep(1000);
         }
     }

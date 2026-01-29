@@ -1,4 +1,5 @@
 <Solution>
   <Project Path="Ecosystem.Tests/Ecosystem.Tests.csproj" />
   <Project Path="Ecosystem/Ecosystem.csproj" />
+  <Project Path="EcosystemDisplay/EcosystemDisplay.csproj" />
 </Solution>

@@ -1,3 +1,5 @@
+﻿namespace EcosystemDisplay;
+
 public interface IOrganism
 {
     void Tick();
