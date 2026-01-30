@@ -2,56 +2,65 @@ namespace Ecosystem.Tests;
 
 [TestFixture(typeof(Badger))]
 [TestFixture(typeof(Caterpillar))]
-public class AnimalTests<TAnimal> where TAnimal : Animal, new()
+public class AnimalTests
 {
+    private readonly Type _animalType;
+    private Animal _animal;
+
+    public AnimalTests(Type animalType)
+    {
+        _animalType = animalType;
+    }
+    
+    [SetUp]
+    public void SetUp()
+    {
+        _animal = (Animal)Activator.CreateInstance(_animalType, "test animal", 0)!;
+    }
+
     [Test]
     public void IncreaseHunger_WhenCalled_IncrementsHungerLevel()
     {
-        TAnimal animal = new TAnimal();
-        int initialHunger = animal.HungerLevel;
+        int initialHunger = _animal.HungerLevel;
 
-        animal.IncreaseHunger();
+        _animal.IncreaseHunger();
 
-        Assert.That(animal.HungerLevel, Is.GreaterThan(initialHunger));
+        Assert.That(_animal.HungerLevel, Is.GreaterThan(initialHunger));
     }
 
     [Test]
     public void ConsumeFood_When_Called_DecreasesHungerLevel()
     {
-        TAnimal animal = new TAnimal();
-        int initialHunger = animal.HungerLevel;
+        _animal.IncreaseHunger();
+        _animal.IncreaseHunger();
 
-        animal.IncreaseHunger();
-        animal.IncreaseHunger();
+        int initialHunger = _animal.HungerLevel;
 
-        animal.ConsumeFood(1);
 
-        Assert.That(animal.HungerLevel, Is.LessThan(initialHunger));
+        _animal.ConsumeFood(1);
+
+        Assert.That(_animal.HungerLevel, Is.LessThan(initialHunger));
     }  
 
     [Test]
     public void ConsumeFood_WhenCalled_DoesNothingWhenHungerLevelZero()
     {
-        TAnimal animal = new TAnimal();
-        int initialHunger = animal.HungerLevel;
+        int initialHunger = _animal.HungerLevel;
 
-        animal.ConsumeFood(2);
+        _animal.ConsumeFood(2);
 
-        Assert.That(initialHunger, Is.EqualTo(animal.HungerLevel));
+        Assert.That(initialHunger, Is.EqualTo(_animal.HungerLevel));
         Assert.That(initialHunger, Is.AtLeast(0));
     }
 
     [Test]
     public void ConsumeFood_WhenHungerIsLow_DoesNotGoBelowZero()
     {
-        TAnimal animal = new TAnimal();
-        int initialHunger = animal.HungerLevel;
+        _animal.IncreaseHunger();
+        _animal.IncreaseHunger();
 
-        animal.IncreaseHunger();
-        animal.IncreaseHunger();
+        _animal.ConsumeFood(4);
 
-        animal.ConsumeFood(4);
-
-        Assert.That(animal.HungerLevel, Is.EqualTo(0));
+        Assert.That(_animal.HungerLevel, Is.EqualTo(0));
     }
 }
