@@ -1,1 +1,1 @@
-global using EcosystemDisplay;
+global using DigitalEcosystemLib;

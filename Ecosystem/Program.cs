@@ -68,7 +68,7 @@ class Program
 
             Thread.Sleep(2000);
             
-            Display.AsCircle(shuffledWorld);
+            EcosystemDisplay.AsCircle(shuffledWorld);
             
             // Thread.Sleep(2000);
 
