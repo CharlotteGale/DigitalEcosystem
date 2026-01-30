@@ -34,7 +34,6 @@ class Program
 
         static void DisplayWorld()
     {
-        Console.Clear();
         foreach(IOrganism organism in World)
         {
             Console.WriteLine(organism.GetState());
@@ -47,6 +46,7 @@ class Program
         
         while (true)
         {
+            Console.Clear();
             foreach(IOrganism organism in World)
             {
                 organism.Tick();
@@ -63,9 +63,9 @@ class Program
                 left.InteractWith(right);
             }
 
-            // DisplayWorld();
+            DisplayWorld();
 
-            // Thread.Sleep(1000);
+            Thread.Sleep(1000);
 
             Display.AsHeirarcy(World);
             
