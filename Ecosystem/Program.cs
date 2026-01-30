@@ -43,8 +43,9 @@ class Program
 
     static void RunSimulation()
     {
-        
-        while (true)
+        var loopCounter = 0;
+
+        while (loopCounter < 3)
         {
             Console.Clear();
             foreach(IOrganism organism in World)
@@ -65,11 +66,19 @@ class Program
 
             DisplayWorld();
 
-            Thread.Sleep(1000);
-
-            Display.AsHeirarcy(World);
+            Thread.Sleep(2000);
             
-            Thread.Sleep(1000);
+            Display.AsCircle(shuffledWorld);
+            
+            // Thread.Sleep(2000);
+
+            // Console.WriteLine("\n=== DEBUG ===");
+            // Console.WriteLine($"Shuffled order: {string.Join(", ", shuffledWorld.Select(o => o.GetType().Name))}");
+            // Console.WriteLine("=============\n");
+
+            Thread.Sleep(5000);
+
+            loopCounter++;
         }
     }
 }
